@@ -1,0 +1,4 @@
+google-adk[db,eval,gcp,otel-gcp]==2.11.0
+pydantic>=2.12,<3
+pytest>=8
+pytest-asyncio>=0.24

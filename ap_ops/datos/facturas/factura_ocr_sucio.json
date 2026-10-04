@@ -1,0 +1,48 @@
+{
+  "id_factura": "20512345672-F001-0O268",
+  "ruc_proveedor": "20512345672",
+  "razon_social": "ACME SERVICI0S GENERA1ES S.A.C",
+  "tipo_comprobante": "01",
+  "serie": "F001",
+  "numero": "0O268",
+  "fecha_emision": "2026-09-18",
+  "fecha_vencimiento": null,
+  "moneda": "PEN",
+  "tipo_cambio": null,
+  "subtotal": 2540.0,
+  "igv": 457.2,
+  "otros_cargos": 0.0,
+  "total": 2997.0,
+  "orden_compra": null,
+  "guia_remision": null,
+  "lineas": [
+    {
+      "numero_linea": 1,
+      "descripcion": "Servicio de manten1miento - detalle ilegible",
+      "codigo_articulo": null,
+      "cantidad": 1.0,
+      "unidad_medida": "ZZ",
+      "precio_unitario": 2540.0,
+      "importe": 2540.0,
+      "centro_costo": null
+    }
+  ],
+  "cuenta_bancaria": {
+    "banco": "BCP",
+    "tipo_cuenta": "corriente",
+    "numero_cuenta": "193-1234567-0-55",
+    "cci": null,
+    "titular": "ACME SERVICI0S GENERA1ES S.A.C",
+    "moneda_cuenta": "PEN"
+  },
+  "condicion_pago": "credito_30",
+  "detraccion_aplica": null,
+  "codigo_detraccion": null,
+  "observaciones_ocr": [
+    "RUC con digito final de baja confianza (0.41): posible 1 o 2",
+    "Numero de comprobante ambiguo: '0O268' contiene caracteres O/0 indistinguibles",
+    "Campo orden de compra no detectado en el documento",
+    "CCI no detectado: zona del documento con sello encima"
+  ],
+  "confianza_ocr": 0.42
+}

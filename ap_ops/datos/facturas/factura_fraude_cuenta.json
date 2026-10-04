@@ -1,0 +1,43 @@
+{
+  "id_factura": "20600123450-F005-00017",
+  "ruc_proveedor": "20600123450",
+  "razon_social": "Soluciones Tech Peru SAC",
+  "tipo_comprobante": "01",
+  "serie": "F005",
+  "numero": "00017",
+  "fecha_emision": "2026-10-01",
+  "fecha_vencimiento": "2026-10-16",
+  "moneda": "PEN",
+  "tipo_cambio": null,
+  "subtotal": 8432.2,
+  "igv": 1517.8,
+  "otros_cargos": 0.0,
+  "total": 9950.0,
+  "orden_compra": "OC-2026-0107",
+  "guia_remision": null,
+  "lineas": [
+    {
+      "numero_linea": 1,
+      "descripcion": "Licencias de software de monitoreo - 20 usuarios",
+      "codigo_articulo": "ART-9033",
+      "cantidad": 20.0,
+      "unidad_medida": "NIU",
+      "precio_unitario": 421.61,
+      "importe": 8432.2,
+      "centro_costo": "CC-310"
+    }
+  ],
+  "cuenta_bancaria": {
+    "banco": "Banco de la Nacion",
+    "tipo_cuenta": "ahorros",
+    "numero_cuenta": "018-7781-0099123",
+    "cci": "01801800778100991234",
+    "titular": "SOLUCIONES TECH PERU SAC",
+    "moneda_cuenta": "PEN"
+  },
+  "condicion_pago": "credito_15",
+  "detraccion_aplica": false,
+  "codigo_detraccion": null,
+  "observaciones_ocr": [],
+  "confianza_ocr": 0.95
+}

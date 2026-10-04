@@ -1,0 +1,102 @@
+[
+  {
+    "numero_nr": "NR-2026-0455",
+    "numero_oc": "OC-2026-0101",
+    "fecha_recepcion": "2026-09-25",
+    "almacen": "Lima Central",
+    "recibido_por": "Luis Mamani",
+    "estado": "completa",
+    "lineas": [
+      {
+        "numero_linea": 1,
+        "descripcion": "Servicio de limpieza industrial - mes setiembre",
+        "codigo_articulo": "ART-0455",
+        "cantidad": 40.0,
+        "unidad_medida": "ZZ",
+        "precio_unitario": 100.0,
+        "importe": 4000.0,
+        "centro_costo": "CC-100"
+      }
+    ]
+  },
+  {
+    "numero_nr": "NR-2026-0781",
+    "numero_oc": "OC-2026-0102",
+    "fecha_recepcion": "2026-09-28",
+    "almacen": "Lima Central",
+    "recibido_por": "Luis Mamani",
+    "estado": "completa",
+    "lineas": [
+      {
+        "numero_linea": 1,
+        "descripcion": "Mantenimiento preventivo de equipos de aire acondicionado",
+        "codigo_articulo": "ART-0781",
+        "cantidad": 85.0,
+        "unidad_medida": "ZZ",
+        "precio_unitario": 120.0,
+        "importe": 10200.0,
+        "centro_costo": "CC-100"
+      }
+    ]
+  },
+  {
+    "numero_nr": "NR-2026-2210",
+    "numero_oc": "OC-2026-0104",
+    "fecha_recepcion": "2026-08-10",
+    "almacen": "Almacen Norte",
+    "recibido_por": "Rosa Huanca",
+    "estado": "completa",
+    "lineas": [
+      {
+        "numero_linea": 1,
+        "descripcion": "Papel bond A4 75g - caja x 10 millares",
+        "codigo_articulo": "ART-2210",
+        "cantidad": 100.0,
+        "unidad_medida": "NIU",
+        "precio_unitario": 70.0,
+        "importe": 7000.0,
+        "centro_costo": "CC-220"
+      }
+    ]
+  },
+  {
+    "numero_nr": "NR-2026-0033",
+    "numero_oc": "OC-2026-0107",
+    "fecha_recepcion": "2026-09-30",
+    "almacen": "Lima Central",
+    "recibido_por": "Ana Rojas",
+    "estado": "completa",
+    "lineas": [
+      {
+        "numero_linea": 1,
+        "descripcion": "Licencias de software de monitoreo - 20 usuarios",
+        "codigo_articulo": "ART-9033",
+        "cantidad": 20.0,
+        "unidad_medida": "NIU",
+        "precio_unitario": 421.61,
+        "importe": 8432.2,
+        "centro_costo": "CC-310"
+      }
+    ]
+  },
+  {
+    "numero_nr": "NR-2026-2255",
+    "numero_oc": "OC-2026-0110",
+    "fecha_recepcion": "2026-09-29",
+    "almacen": "Almacen Norte",
+    "recibido_por": "Rosa Huanca",
+    "estado": "completa",
+    "lineas": [
+      {
+        "numero_linea": 1,
+        "descripcion": "Toner compatible para impresora laser - unidad",
+        "codigo_articulo": "ART-2255",
+        "cantidad": 150.0,
+        "unidad_medida": "NIU",
+        "precio_unitario": 80.0,
+        "importe": 12000.0,
+        "centro_costo": "CC-220"
+      }
+    ]
+  }
+]

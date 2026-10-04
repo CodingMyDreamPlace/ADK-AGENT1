@@ -1,0 +1,43 @@
+{
+  "id_factura": "20512345671-F001-00241",
+  "ruc_proveedor": "20512345671",
+  "razon_social": "ACME Servicios Generales SAC",
+  "tipo_comprobante": "01",
+  "serie": "F001",
+  "numero": "00241",
+  "fecha_emision": "2026-09-29",
+  "fecha_vencimiento": "2026-10-29",
+  "moneda": "PEN",
+  "tipo_cambio": null,
+  "subtotal": 10200.0,
+  "igv": 1500.0,
+  "otros_cargos": 0.0,
+  "total": 11700.0,
+  "orden_compra": "OC-2026-0102",
+  "guia_remision": null,
+  "lineas": [
+    {
+      "numero_linea": 1,
+      "descripcion": "Mantenimiento preventivo de equipos de aire acondicionado",
+      "codigo_articulo": "ART-0781",
+      "cantidad": 85.0,
+      "unidad_medida": "ZZ",
+      "precio_unitario": 120.0,
+      "importe": 10200.0,
+      "centro_costo": "CC-100"
+    }
+  ],
+  "cuenta_bancaria": {
+    "banco": "BCP",
+    "tipo_cuenta": "corriente",
+    "numero_cuenta": "193-1234567-0-55",
+    "cci": "00219300123456789012",
+    "titular": "ACME Servicios Generales SAC",
+    "moneda_cuenta": "PEN"
+  },
+  "condicion_pago": "credito_30",
+  "detraccion_aplica": true,
+  "codigo_detraccion": "037",
+  "observaciones_ocr": [],
+  "confianza_ocr": 0.96
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "id_factura": "20478965410-F002-00891",
+    "ruc_proveedor": "20478965410",
+    "serie": "F002",
+    "numero": "00891",
+    "fecha_emision": "2026-08-14",
+    "total": 8260.0,
+    "estado_pago": "pagada",
+    "fecha_registro": "2026-08-16"
+  },
+  {
+    "id_factura": "20478965410-F002-00755",
+    "ruc_proveedor": "20478965410",
+    "serie": "F002",
+    "numero": "00755",
+    "fecha_emision": "2026-06-20",
+    "total": 5400.0,
+    "estado_pago": "pagada",
+    "fecha_registro": "2026-06-22"
+  },
+  {
+    "id_factura": "20512345671-F001-00188",
+    "ruc_proveedor": "20512345671",
+    "serie": "F001",
+    "numero": "00188",
+    "fecha_emision": "2026-07-05",
+    "total": 4720.0,
+    "estado_pago": "pagada",
+    "fecha_registro": "2026-07-08"
+  },
+  {
+    "id_factura": "20512345671-F001-00201",
+    "ruc_proveedor": "20512345671",
+    "serie": "F001",
+    "numero": "00201",
+    "fecha_emision": "2026-08-05",
+    "total": 4720.0,
+    "estado_pago": "pagada",
+    "fecha_registro": "2026-08-07"
+  },
+  {
+    "id_factura": "20100047218-F003-00042",
+    "ruc_proveedor": "20100047218",
+    "serie": "F003",
+    "numero": "00042",
+    "fecha_emision": "2026-05-11",
+    "total": 12400.0,
+    "estado_pago": "anulada",
+    "fecha_registro": "2026-05-12"
+  }
+]

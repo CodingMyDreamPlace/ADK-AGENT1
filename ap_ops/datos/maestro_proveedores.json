@@ -1,0 +1,107 @@
+[
+  {
+    "ruc": "20512345671",
+    "razon_social": "ACME Servicios Generales SAC",
+    "estado": "habilitado",
+    "fecha_alta": "2021-03-15",
+    "cuentas_registradas": [
+      {
+        "banco": "BCP",
+        "tipo_cuenta": "corriente",
+        "numero_cuenta": "193-1234567-0-55",
+        "cci": "00219300123456789012",
+        "titular": "ACME Servicios Generales SAC",
+        "moneda_cuenta": "PEN"
+      }
+    ],
+    "condicion_pago_contractual": "credito_30",
+    "limite_contrato": 500000.0,
+    "monto_consumido_contrato": 120000.0,
+    "categoria_riesgo": "bajo",
+    "es_agente_retencion": false
+  },
+  {
+    "ruc": "20478965410",
+    "razon_social": "Distribuidora Andina SAC",
+    "estado": "habilitado",
+    "fecha_alta": "2019-07-01",
+    "cuentas_registradas": [
+      {
+        "banco": "Interbank",
+        "tipo_cuenta": "corriente",
+        "numero_cuenta": "112-3009876-54",
+        "cci": "00311200987654321098",
+        "titular": "Distribuidora Andina SAC",
+        "moneda_cuenta": "PEN"
+      }
+    ],
+    "condicion_pago_contractual": "credito_45",
+    "limite_contrato": 300000.0,
+    "monto_consumido_contrato": 295000.0,
+    "categoria_riesgo": "medio",
+    "es_agente_retencion": true
+  },
+  {
+    "ruc": "20600123450",
+    "razon_social": "Soluciones Tech Peru SAC",
+    "estado": "nuevo",
+    "fecha_alta": "2026-09-20",
+    "cuentas_registradas": [
+      {
+        "banco": "BBVA",
+        "tipo_cuenta": "corriente",
+        "numero_cuenta": "0011-0456-0100111222",
+        "cci": "01145600111222333444",
+        "titular": "Soluciones Tech Peru SAC",
+        "moneda_cuenta": "PEN"
+      }
+    ],
+    "condicion_pago_contractual": "credito_15",
+    "limite_contrato": null,
+    "monto_consumido_contrato": 0.0,
+    "categoria_riesgo": "alto",
+    "es_agente_retencion": false
+  },
+  {
+    "ruc": "20100047218",
+    "razon_social": "Ferreteria El Sol SAC",
+    "estado": "suspendido",
+    "fecha_alta": "2018-01-10",
+    "cuentas_registradas": [
+      {
+        "banco": "Scotiabank",
+        "tipo_cuenta": "corriente",
+        "numero_cuenta": "128-0055566-677",
+        "cci": "00912800555666777888",
+        "titular": "Ferreteria El Sol SAC",
+        "moneda_cuenta": "PEN"
+      }
+    ],
+    "condicion_pago_contractual": "contado",
+    "limite_contrato": 80000.0,
+    "monto_consumido_contrato": 12400.0,
+    "categoria_riesgo": "alto",
+    "es_agente_retencion": false
+  },
+  {
+    "ruc": "10456789124",
+    "razon_social": "Juan Perez Consultoria EIRL",
+    "estado": "habilitado",
+    "fecha_alta": "2023-05-05",
+    "cuentas_registradas": [
+      {
+        "banco": "BCP",
+        "tipo_cuenta": "ahorros",
+        "numero_cuenta": "193-9998887-1-22",
+        "cci": "00219300999888777666",
+        "titular": "Juan Perez Consultoria EIRL",
+        "moneda_cuenta": "PEN"
+      }
+    ],
+    "condicion_pago_contractual": "credito_30",
+    "limite_contrato": 60000.0,
+    "monto_consumido_contrato": 8000.0,
+    "categoria_riesgo": "bajo",
+    "es_agente_retencion": false
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "id_factura": "20478965410-F002-00930",
+  "ruc_proveedor": "20478965410",
+  "razon_social": "Distribuidora Andina SAC",
+  "tipo_comprobante": "01",
+  "serie": "F002",
+  "numero": "00930",
+  "fecha_emision": "2026-09-30",
+  "fecha_vencimiento": "2026-09-30",
+  "moneda": "PEN",
+  "tipo_cambio": null,
+  "subtotal": 12000.0,
+  "igv": 2160.0,
+  "otros_cargos": 0.0,
+  "total": 14160.0,
+  "orden_compra": "OC-2026-0110",
+  "guia_remision": "T001-0004688",
+  "lineas": [
+    {
+      "numero_linea": 1,
+      "descripcion": "Toner compatible para impresora laser - unidad",
+      "codigo_articulo": "ART-2255",
+      "cantidad": 150.0,
+      "unidad_medida": "NIU",
+      "precio_unitario": 80.0,
+      "importe": 12000.0,
+      "centro_costo": "CC-220"
+    }
+  ],
+  "cuenta_bancaria": {
+    "banco": "Interbank",
+    "tipo_cuenta": "corriente",
+    "numero_cuenta": "112-3009876-54",
+    "cci": "00311200987654321098",
+    "titular": "Distribuidora Andina SAC",
+    "moneda_cuenta": "PEN"
+  },
+  "condicion_pago": "contado",
+  "detraccion_aplica": false,
+  "codigo_detraccion": null,
+  "observaciones_ocr": [],
+  "confianza_ocr": 0.93
+}

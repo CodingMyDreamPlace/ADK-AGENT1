@@ -68,13 +68,18 @@ from google.genai import types  # noqa: E402
 
 from ..flujo import pipeline_ap  # noqa: E402
 from ..herramientas import listar_facturas, render_memo_markdown  # noqa: E402
+from ..observabilidad.otel import configurar_otel  # noqa: E402
+from ..plugins import PluginAuditoriaAP  # noqa: E402
+
+configurar_otel()  # AP_OPS_OTEL=consola para ver los spans por stdout
 
 DIR_SALIDAS = Path("salidas")
 
 
 async def correr(id_factura: str, verbose: bool = True) -> tuple[dict | None, dict]:
     """Ejecuta el pipeline y devuelve (expediente, metricas)."""
-    app = App(name="ap_ops_pipeline", root_agent=pipeline_ap, plugins=[])
+    auditoria = PluginAuditoriaAP()
+    app = App(name="ap_ops_pipeline", root_agent=pipeline_ap, plugins=[auditoria])
     runner = Runner(
         app=app,
         session_service=InMemorySessionService(),
@@ -134,6 +139,10 @@ async def correr(id_factura: str, verbose: bool = True) -> tuple[dict | None, di
                 print(f"  [ERR ] {autor}: {event.error_message}")
 
     metricas["duracion_s"] = round(time.monotonic() - t0, 2)
+    # Eje ops: lo que el plugin de auditoria detecto durante la corrida.
+    metricas["recomendaciones_ops"] = [
+        r for reg in auditoria.cerrados for r in reg.recomendaciones_ops
+    ]
     return expediente, metricas
 
 
@@ -197,6 +206,15 @@ def imprimir_resumen(expediente: dict | None, metricas: dict) -> None:
     print(f"    iteraciones critico: {expediente['iteraciones_critico']}")
     print(f"    duracion           : {metricas['duracion_s']} s")
     print(f"    memo               : {expediente.get('artefacto_memo') or 'no guardado'}")
+
+    recs = metricas.get("recomendaciones_ops", [])
+    print()
+    print(f"  --- EJE OPS: recomendaciones ({len(recs)}) ---")
+    if not recs:
+        print("    ninguna: el pipeline corrio sin anomalias")
+    for r in recs:
+        print(f"    [{r.urgencia.upper():5}] {r.senal.tipo} @ {r.senal.componente}")
+        print(f"            -> {r.tipo_accion} ({r.responsable}): {r.accion_recomendada[:110]}")
     print("-" * 78)
 
 

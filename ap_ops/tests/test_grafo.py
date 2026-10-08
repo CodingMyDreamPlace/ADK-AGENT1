@@ -221,9 +221,14 @@ class TestConfiguracionDeAgentes:
         desde el cuerpo de una FunctionTool."""
         assert not coordinador.sub_agents
 
-    def test_el_coordinador_expone_las_3_herramientas(self):
+    def test_el_coordinador_expone_las_4_herramientas(self):
         nombres = {getattr(t, "__name__", getattr(t, "name", "")) for t in coordinador.tools}
-        assert nombres == {"triar_factura", "explicar_decision", "replantear_plan"}
+        assert nombres == {
+            "triar_factura",
+            "explicar_decision",
+            "replantear_plan",
+            "autorizar_pago",
+        }
 
 
 class TestEsquemasAceptadosPorGemini:

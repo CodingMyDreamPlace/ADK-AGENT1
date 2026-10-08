@@ -14,6 +14,11 @@ from __future__ import annotations
 from google.adk.apps import App
 
 from .coordinador import coordinador
+from .observabilidad.otel import configurar_otel
+from .plugins import PluginAuditoriaAP
+
+# AP_OPS_OTEL=consola|otlp|cloud. Sin la variable es no-op. Nunca levanta.
+configurar_otel()
 
 #: `root_agent` se expone ademas de `app` por compatibilidad: varios tutoriales
 #: y herramientas de terceros lo buscan por nombre.
@@ -22,7 +27,8 @@ root_agent = coordinador
 app = App(
     name="ap_ops",
     root_agent=coordinador,
-    # Fase 3 registra aqui PluginAuditoriaAP, que es lo que convierte cada
-    # senal de observabilidad en una RecomendacionOps accionable.
-    plugins=[],
+    # El plugin convierte cada senal de observabilidad en una RecomendacionOps
+    # accionable. Se registra en el App y no en el Runner: `Runner(plugins=...)`
+    # esta deprecado en 2.11.
+    plugins=[PluginAuditoriaAP()],
 )

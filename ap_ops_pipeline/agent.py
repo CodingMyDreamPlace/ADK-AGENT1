@@ -23,6 +23,10 @@ from google.adk.apps import App
 from google.adk.apps._configs import ResumabilityConfig
 
 from ap_ops.flujo import pipeline_ap
+from ap_ops.observabilidad.otel import configurar_otel
+from ap_ops.plugins import PluginAuditoriaAP
+
+configurar_otel()
 
 root_agent = pipeline_ap
 
@@ -32,5 +36,5 @@ app = App(
     # Requisito para pausar y reanudar por `invocation_id`. Se activa desde ya
     # para que Fase 5 no tenga que cambiar la forma de la App.
     resumability_config=ResumabilityConfig(is_resumable=True),
-    plugins=[],
+    plugins=[PluginAuditoriaAP()],
 )

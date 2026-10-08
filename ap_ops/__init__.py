@@ -5,6 +5,4 @@ pipeline de triaje como herramientas, mas el gate de human-in-the-loop para todo
 que mueva dinero. Ver PLAN-AP-OPS.md.
 """
 
-# Fase 2: descomentar cuando exista ap_ops/agent.py con `app = App(...)`.
-# ADK lo descubre buscando primero `app` y luego `root_agent` en agent.py.
-# from . import agent
+from . import agent  # noqa: F401

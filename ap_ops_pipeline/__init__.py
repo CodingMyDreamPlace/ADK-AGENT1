@@ -5,5 +5,4 @@ App.root_agent, para batch, evaluacion y para ejercitar el HITL dentro del grafo
 (que no compone a traves de run_node desde una FunctionTool). Ver PLAN-AP-OPS.md.
 """
 
-# Fase 2: descomentar cuando exista ap_ops_pipeline/agent.py con `app = App(...)`.
-# from . import agent
+from . import agent  # noqa: F401

@@ -13,11 +13,62 @@ tiene numeros magicos escritos adentro, por dos razones:
 
 from __future__ import annotations
 
+import os
+
 VERSION_PIPELINE = "0.1.0"
+
+# ---------------------------------------------------------------- cuota
+#: Perfil de cuota del proveedor. 'free' | 'pago'
+#:
+#: ESTO NO ES UN DETALLE DE CONFIGURACION, ES UNA RESTRICCION ARQUITECTONICA.
+#:
+#: El free tier de AI Studio permite 5 requests por minuto por modelo. El
+#: fan-out de 4 validadores son 8 requests en rafaga, porque cada validador
+#: hace DOS llamadas: la que emite el function call y la que devuelve el JSON
+#: estructurado despues de que la herramienta respondio. Ocho requests contra
+#: un limite de cinco es un 429 garantizado.
+#:
+#: En perfil 'free' el pipeline sigue funcionando pero en serie y con esperas
+#: largas: una factura tarda minutos en lugar de segundos. Sirve para
+#: desarrollo y para los golden tests, no para procesar un lote.
+#:
+#: El perfil 'pago' requiere facturacion habilitada en AI Studio, o migrar a
+#: Vertex (GOOGLE_GENAI_USE_ENTERPRISE=1 + ADC), que es lo que pide la etapa B
+#: del camino de migracion en ARQUITECTURA.md.
+PERFIL_CUOTA = os.environ.get("AP_OPS_PERFIL_CUOTA", "free").lower()
+ES_FREE_TIER = PERFIL_CUOTA == "free"
+
+#: Nodos del fan-out que corren a la vez. En free tier: 1 (serie).
+MAX_CONCURRENCIA = 1 if ES_FREE_TIER else 4
+
+#: Reintentos de los validadores ante 429. En free tier el delay tiene que
+#: superar la ventana de un minuto del limite de RPM, o los tres intentos se
+#: consumen dentro de la misma ventana agotada.
+REINTENTO_MAX_INTENTOS = 5 if ES_FREE_TIER else 3
+REINTENTO_DELAY_INICIAL = 30.0 if ES_FREE_TIER else 1.0
+REINTENTO_DELAY_MAXIMO = 70.0 if ES_FREE_TIER else 30.0
+
+#: Timeouts. En free tier hay que dar espacio a las esperas de cuota.
+TIMEOUT_VALIDADOR = 300.0 if ES_FREE_TIER else 90.0
+TIMEOUT_AGENTE_JUICIO = 300.0 if ES_FREE_TIER else 150.0
+TIMEOUT_PIPELINE = 1800.0 if ES_FREE_TIER else 300.0
 
 # ---------------------------------------------------------------- modelos
 #: Validadores y critico: tarea acotada, salida estructurada, temperatura 0.
-MODELO_RAPIDO = "gemini-3.5-flash"
+#:
+#: Por que flash-LITE y no flash: la cuota del free tier es POR MODELO
+#: (`GenerateRequestsPerDayPerProjectPerModel-FreeTier`, 20 requests/dia). Con
+#: los validadores y el critico en un modelo distinto del que usan scoring,
+#: plan y coordinador, el pipeline tiene dos buckets diarios en lugar de uno.
+#:
+#: El cambio es defendible por diseno, no solo por cuota: los validadores NO
+#: calculan nada. La herramienta ya hizo la aritmetica, los lookups y las
+#: comparaciones; el modelo solo traduce `desviaciones` a `Hallazgo` tipados y
+#: asigna severidad proporcional. Para eso alcanza un modelo mas chico. El
+#: juicio que si necesita capacidad —correlacionar tres senales debiles en un
+#: fraude, redactar un plan ejecutable— vive en MODELO_JUICIO.
+MODELO_RAPIDO = "gemini-3.5-flash-lite"
+
 #: Scoring, plan de accion y coordinador: requieren correlacion y redaccion.
 MODELO_JUICIO = "gemini-3.8-flash"
 

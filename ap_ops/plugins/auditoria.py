@@ -21,6 +21,7 @@ from __future__ import annotations
 import functools
 import logging
 import time
+import weakref
 from datetime import datetime, timezone
 from typing import Any
 
@@ -59,6 +60,28 @@ def _ahora() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+#: Instancias vivas del plugin, para que `consumo()` pueda leer sus contadores.
+_INSTANCIAS: "weakref.WeakSet[PluginAuditoriaAP]" = weakref.WeakSet()
+
+
+def consumo(invocation_id: str) -> tuple[int, int]:
+    """(llamadas_llm, tokens) acumulados por el plugin para una invocacion.
+
+    Lo consume `nodo_expediente` para llenar `ExpedienteAP.llamadas_llm` y
+    `tokens_consumidos`. NO se escribe en `ctx.state` desde los hooks a
+    proposito: con los validadores en paralelo, dos escrituras a la misma clave
+    son ultimo-que-escribe-gana y se perderian incrementos. Un contador en
+    memoria del proceso, con clave por invocacion, no tiene ese problema.
+
+    Devuelve (0, 0) si el plugin no esta registrado (p.ej. en los tests).
+    """
+    for plugin in list(_INSTANCIAS):
+        reg = plugin._registros.get(invocation_id)
+        if reg is not None:
+            return reg.llamadas_llm, reg.tokens_entrada + reg.tokens_salida
+    return 0, 0
+
+
 class PluginAuditoriaAP(BasePlugin):
     """Audita cada invocacion y convierte anomalias en recomendaciones."""
 
@@ -69,6 +92,7 @@ class PluginAuditoriaAP(BasePlugin):
         self._vistas: dict[str, set[tuple[str, str]]] = {}
         #: Registros ya cerrados. Los consumen el script de corrida y los tests.
         self.cerrados: list[RegistroAuditoria] = []
+        _INSTANCIAS.add(self)
 
     # ------------------------------------------------------------ nucleo
     def _registro(self, invocation_id: str) -> RegistroAuditoria:

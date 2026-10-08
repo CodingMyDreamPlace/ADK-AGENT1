@@ -28,6 +28,7 @@ from .. import config
 from ..esquemas import ExpedienteAP
 from ..herramientas import aplicar_compuerta, render_memo_markdown
 from ..herramientas._fechas import ahora_iso
+from ..plugins.auditoria import consumo
 
 
 def _evaluacion_sintetica(consolidado: dict) -> dict:
@@ -134,6 +135,11 @@ async def nodo_expediente(ctx: Context) -> dict:
         "proveedor_contrato": ctx.state.get("val_proveedor") or {},
     }
 
+    # El costo real lo cuenta el plugin de auditoria (no el estado: ver
+    # `plugins.auditoria.consumo`). Es la metrica que decide si el sistema es
+    # viable a 10.000 facturas por mes o solo en el demo.
+    llamadas, tokens = consumo(ctx.invocation_id)
+
     expediente = {
         "id_expediente": f"EXP-{id_factura}",
         "id_factura": id_factura,
@@ -152,8 +158,8 @@ async def nodo_expediente(ctx: Context) -> dict:
         "decision": decision,
         "iteraciones_critico": int(ctx.state.get("iter_critico", 0)),
         "artefacto_memo": None,
-        "llamadas_llm": int(ctx.state.get("llamadas_llm", 0)),
-        "tokens_consumidos": int(ctx.state.get("tokens_consumidos", 0)),
+        "llamadas_llm": llamadas,
+        "tokens_consumidos": tokens,
     }
 
     # --- memo como artifact --------------------------------------------------

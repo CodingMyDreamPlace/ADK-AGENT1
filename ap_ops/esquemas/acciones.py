@@ -64,8 +64,11 @@ class AccionPropuesta(BaseModel):
     tipo_accion: TipoAccion
     responsable: Responsable
     prioridad: int = Field(ge=1, le=5, description="1 es lo mas urgente.")
+    # ge=1 y NO gt=0: `gt` genera `exclusiveMinimum` en el JSON Schema, y el
+    # `types.Schema` de Gemini lo rechaza (extra_forbidden) en tiempo de
+    # llamada, no de import. Para enteros son equivalentes.
     sla_horas: int = Field(
-        gt=0,
+        ge=1,
         description="Plazo. Sin plazo una accion no entra a ninguna cola de trabajo.",
     )
 

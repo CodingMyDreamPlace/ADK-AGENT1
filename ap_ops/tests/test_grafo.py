@@ -226,6 +226,22 @@ class TestConfiguracionDeAgentes:
         assert nombres == {"triar_factura", "explicar_decision", "replantear_plan"}
 
 
+class TestEsquemasAceptadosPorGemini:
+    @pytest.mark.parametrize("agente", AGENTES_PIPELINE, ids=lambda a: a.name)
+    def test_el_output_schema_es_aceptado_por_gemini(self, agente):
+        """Un campo con `gt=` o `lt=` genera exclusiveMinimum/Maximum, que
+        `types.Schema` rechaza recien al llamar al modelo: el grafo importa y
+        los otros tests pasan, y el pipeline muere despues de gastar 10
+        llamadas. Este test lo atrapa gratis."""
+        from google.genai import types
+
+        types.Schema.from_json_schema(
+            json_schema=types.JSONSchema.model_validate(
+                agente.output_schema.model_json_schema()
+            )
+        )
+
+
 class TestInterpolacionDeEstado:
     #: Claves que alguien escribe de verdad en `ctx.state`.
     #: nodo_intake: id_factura, nombre_proveedor, moneda, total_factura, factura,

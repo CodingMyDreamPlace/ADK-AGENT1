@@ -1,0 +1,47 @@
+{
+  "eval_set_id": "triaje_basico",
+  "name": "Triaje basico del coordinador",
+  "description": "Casos del coordinador conversacional. CADA CASO GASTA LLAMADAS A GEMINI: factura_conforme ~8, factura_fraude_cuenta ~11. Ver docs/EVALUACION.md.",
+  "eval_cases": [
+    {
+      "eval_id": "triar_factura_limpia",
+      "conversation": [
+        {
+          "invocation_id": "inv-conforme",
+          "user_content": {
+            "role": "user",
+            "parts": [{"text": "Analiza la factura factura_conforme"}]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {"name": "triar_factura", "args": {"id_factura": "factura_conforme"}}
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {"app_name": "ap_ops", "user_id": "eval", "state": {}}
+    },
+    {
+      "eval_id": "triar_factura_con_fraude",
+      "conversation": [
+        {
+          "invocation_id": "inv-fraude",
+          "user_content": {
+            "role": "user",
+            "parts": [{"text": "Triá la factura factura_fraude_cuenta y decime qué hacer"}]
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {"name": "triar_factura", "args": {"id_factura": "factura_fraude_cuenta"}}
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {"app_name": "ap_ops", "user_id": "eval", "state": {}}
+    }
+  ]
+}

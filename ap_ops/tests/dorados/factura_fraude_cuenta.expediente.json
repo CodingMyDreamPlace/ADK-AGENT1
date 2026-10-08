@@ -1,0 +1,398 @@
+{
+  "id_expediente": "EXP-20600123450-F005-00017",
+  "id_factura": "20600123450-F005-00017",
+  "version_pipeline": "0.1.0",
+  "generado_en": "2026-10-08T17:19:33-05:00",
+  "factura": {
+    "id_factura": "20600123450-F005-00017",
+    "ruc_proveedor": "20600123450",
+    "razon_social": "Soluciones Tech Peru SAC",
+    "tipo_comprobante": "01",
+    "serie": "F005",
+    "numero": "00017",
+    "fecha_emision": "2026-10-01",
+    "fecha_vencimiento": "2026-10-16",
+    "moneda": "PEN",
+    "tipo_cambio": null,
+    "subtotal": 8432.2,
+    "igv": 1517.8,
+    "otros_cargos": 0.0,
+    "total": 9950.0,
+    "orden_compra": "OC-2026-0107",
+    "guia_remision": null,
+    "lineas": [
+      {
+        "numero_linea": 1,
+        "descripcion": "Licencias de software de monitoreo - 20 usuarios",
+        "codigo_articulo": "ART-9033",
+        "cantidad": 20.0,
+        "unidad_medida": "NIU",
+        "precio_unitario": 421.61,
+        "importe": 8432.2,
+        "centro_costo": "CC-310"
+      }
+    ],
+    "cuenta_bancaria": {
+      "banco": "Banco de la Nacion",
+      "tipo_cuenta": "ahorros",
+      "numero_cuenta": "018-7781-0099123",
+      "cci": "01801800778100991234",
+      "titular": "SOLUCIONES TECH PERU SAC",
+      "moneda_cuenta": "PEN"
+    },
+    "condicion_pago": "credito_15",
+    "detraccion_aplica": false,
+    "codigo_detraccion": null,
+    "observaciones_ocr": [],
+    "confianza_ocr": 0.95
+  },
+  "resultados": {
+    "tres_vias": {
+      "validador": "validador_tres_vias",
+      "estado": "conforme",
+      "hallazgos": [],
+      "resumen": "La factura 20600123450-F005-00017 se encuentra completamente conciliada contra la orden de compra OC-2026-0107 y la nota de recepción NR-2026-0033 sin presentar desviaciones.",
+      "datos_verificados": [
+        {
+          "nombre": "id_factura",
+          "valor": "20600123450-F005-00017",
+          "fuente": "herramienta"
+        }
+      ],
+      "orden_compra_encontrada": true,
+      "nota_recepcion_encontrada": true,
+      "lineas_conciliadas": 1,
+      "lineas_con_diferencia": 0,
+      "diferencia_cantidad_total": 0.0,
+      "diferencia_monto": 0.0,
+      "diferencia_porcentaje": 0.0,
+      "dentro_tolerancia": true,
+      "tolerancia_aplicada_pct": 2.0
+    },
+    "tributario": {
+      "validador": "validador_tributario",
+      "estado": "conforme",
+      "hallazgos": [],
+      "resumen": "La factura 20600123450-F005-00017 es conforme en todos los aspectos tributarios evaluados: IGV correcto, aritmética exacta, RUC válido (persona jurídica), comprobante tipo factura válido, periodo vigente y sin requerimiento de detracción.",
+      "datos_verificados": [],
+      "ruc_valido": true,
+      "ruc_tipo": "20",
+      "igv_declarado": 1517.8,
+      "igv_calculado": 1517.8,
+      "diferencia_igv": 0.0,
+      "aritmetica_correcta": true,
+      "tipo_comprobante_valido": true,
+      "periodo_valido": true,
+      "dias_antiguedad": 2,
+      "detraccion_requerida": false,
+      "cuenta_detraccion_presente": false
+    },
+    "duplicados_fraude": {
+      "validador": "validador_duplicados_fraude",
+      "estado": "observado",
+      "hallazgos": [
+        {
+          "codigo": "FRA-CTA-004",
+          "titulo": "La cuenta de abono no coincide con ninguna registrada del proveedor",
+          "severidad": "critica",
+          "categoria": "duplicado_fraude",
+          "campo_afectado": "cuenta_bancaria.cci",
+          "valor_declarado": "****1234",
+          "valor_esperado": "****3444",
+          "evidencia": "La cuenta de abono declarada (Banco de la Nacion, ****1234) no coincide con ninguna de las 1 cuenta(s) registradas del proveedor (la registrada es ****3444). Patron tipico de fraude de desvio de pago",
+          "fuente": "herramienta",
+          "confianza": 1.0,
+          "monto_impactado": 9950.0,
+          "bloquea_pago": true
+        },
+        {
+          "codigo": "FRA-NUE-006",
+          "titulo": "Proveedor recien dado de alta con monto significativo",
+          "severidad": "alta",
+          "categoria": "duplicado_fraude",
+          "campo_afectado": "ruc_proveedor",
+          "valor_declarado": "alta 2026-09-20 (13 dias)",
+          "valor_esperado": "null",
+          "evidencia": "Proveedor dado de alta hace 13 dias (estado 'nuevo') facturando PEN 9,950.00, por encima del umbral de S/ 5,000.00 para proveedores nuevos",
+          "fuente": "herramienta",
+          "confianza": 1.0,
+          "monto_impactado": 9950.0,
+          "bloquea_pago": false
+        },
+        {
+          "codigo": "FRA-UMB-007",
+          "titulo": "Monto apenas por debajo del umbral de aprobacion: posible fraccionamiento",
+          "severidad": "media",
+          "categoria": "duplicado_fraude",
+          "campo_afectado": "total",
+          "valor_declarado": "9,950.00",
+          "valor_esperado": "umbral 10,000.00",
+          "evidencia": "Total PEN 9,950.00 esta S/ 50.00 (0.50%) por debajo del umbral de aprobacion de S/ 10,000.00. Dentro del margen de 5.0% que indica posible fraccionamiento deliberado para evitar una firma",
+          "fuente": "herramienta",
+          "confianza": 1.0,
+          "monto_impactado": 9950.0,
+          "bloquea_pago": false
+        }
+      ],
+      "resumen": "Se detecto que la cuenta bancaria declarada no coincide con la registrada del proveedor (patron critico de fraude por desvio de pago), ademas de tratarse de un proveedor nuevo con facturacion significativa y un monto apenas por debajo del umbral de aprobacion.",
+      "datos_verificados": [
+        {
+          "nombre": "monto_impactado",
+          "valor": "9950",
+          "fuente": "herramienta"
+        }
+      ],
+      "huella": "cff94fd5665cd95e",
+      "duplicados_detectados": [],
+      "cuenta_bancaria_coincide": false,
+      "cuenta_registrada_enmascarada": "****3444",
+      "cuenta_declarada_enmascarada": "****1234",
+      "proveedor_nuevo": true,
+      "dias_desde_alta_proveedor": 13,
+      "monto_bajo_umbral_sospechoso": true,
+      "distancia_al_umbral": 50.0,
+      "indicadores_fraude": [
+        "FRA-CTA-004",
+        "FRA-NUE-006",
+        "FRA-UMB-007"
+      ]
+    },
+    "proveedor_contrato": {
+      "validador": "validador_proveedor_contrato",
+      "estado": "conforme",
+      "hallazgos": [],
+      "resumen": "El proveedor esta habilitado, la condicion de pago coincide con el contrato y no se excede el limite del contrato. El estado es nuevo pero habilitado para operar.",
+      "datos_verificados": [
+        {
+          "nombre": "monto_consumido",
+          "valor": "0",
+          "fuente": "herramienta"
+        }
+      ],
+      "proveedor_habilitado": true,
+      "estado_proveedor": "nuevo",
+      "condicion_pago_declarada": "credito_15",
+      "condicion_pago_contractual": "credito_15",
+      "condicion_pago_coincide": true,
+      "monto_consumido": 0.0,
+      "excede_contrato": false,
+      "es_agente_retencion": false
+    }
+  },
+  "consolidado": {
+    "id_factura": "20600123450-F005-00017",
+    "hallazgos": [
+      {
+        "codigo": "FRA-CTA-004",
+        "titulo": "La cuenta de abono no coincide con ninguna registrada del proveedor",
+        "severidad": "critica",
+        "categoria": "duplicado_fraude",
+        "campo_afectado": "cuenta_bancaria.cci",
+        "valor_declarado": "****1234",
+        "valor_esperado": "****3444",
+        "evidencia": "La cuenta de abono declarada (Banco de la Nacion, ****1234) no coincide con ninguna de las 1 cuenta(s) registradas del proveedor (la registrada es ****3444). Patron tipico de fraude de desvio de pago",
+        "fuente": "herramienta",
+        "confianza": 1.0,
+        "monto_impactado": 9950.0,
+        "bloquea_pago": true
+      },
+      {
+        "codigo": "FRA-NUE-006",
+        "titulo": "Proveedor recien dado de alta con monto significativo",
+        "severidad": "alta",
+        "categoria": "duplicado_fraude",
+        "campo_afectado": "ruc_proveedor",
+        "valor_declarado": "alta 2026-09-20 (13 dias)",
+        "valor_esperado": "null",
+        "evidencia": "Proveedor dado de alta hace 13 dias (estado 'nuevo') facturando PEN 9,950.00, por encima del umbral de S/ 5,000.00 para proveedores nuevos",
+        "fuente": "herramienta",
+        "confianza": 1.0,
+        "monto_impactado": 9950.0,
+        "bloquea_pago": false
+      },
+      {
+        "codigo": "FRA-UMB-007",
+        "titulo": "Monto apenas por debajo del umbral de aprobacion: posible fraccionamiento",
+        "severidad": "media",
+        "categoria": "duplicado_fraude",
+        "campo_afectado": "total",
+        "valor_declarado": "9,950.00",
+        "valor_esperado": "umbral 10,000.00",
+        "evidencia": "Total PEN 9,950.00 esta S/ 50.00 (0.50%) por debajo del umbral de aprobacion de S/ 10,000.00. Dentro del margen de 5.0% que indica posible fraccionamiento deliberado para evitar una firma",
+        "fuente": "herramienta",
+        "confianza": 1.0,
+        "monto_impactado": 9950.0,
+        "bloquea_pago": false
+      }
+    ],
+    "puntaje_determinista": 95,
+    "severidad_maxima": "critica",
+    "monto_total_impactado": 29850.0,
+    "validadores_no_evaluables": [],
+    "resumen_por_categoria": [
+      {
+        "nombre": "duplicado_fraude",
+        "valor": "3",
+        "fuente": "herramienta"
+      }
+    ]
+  },
+  "evaluacion": {
+    "id_factura": "20600123450-F005-00017",
+    "puntaje_riesgo": 98,
+    "severidad_global": "critica",
+    "hallazgos": [
+      {
+        "codigo": "FRA-CTA-004",
+        "titulo": "La cuenta de abono no coincide con ninguna registrada del proveedor",
+        "severidad": "critica",
+        "categoria": "duplicado_fraude",
+        "campo_afectado": "cuenta_bancaria.cci",
+        "valor_declarado": "****1234",
+        "valor_esperado": "****3444",
+        "evidencia": "La cuenta de abono declarada (Banco de la Nacion, ****1234) no coincide con ninguna de las 1 cuenta(s) registradas del proveedor (la registrada es ****3444). Patron tipico de fraude de desvio de pago",
+        "fuente": "herramienta",
+        "confianza": 1.0,
+        "monto_impactado": 9950.0,
+        "bloquea_pago": true
+      },
+      {
+        "codigo": "FRA-NUE-006",
+        "titulo": "Proveedor recien dado de alta con monto significativo",
+        "severidad": "alta",
+        "categoria": "duplicado_fraude",
+        "campo_afectado": "ruc_proveedor",
+        "valor_declarado": "alta 2026-09-20 (13 dias)",
+        "valor_esperado": "null",
+        "evidencia": "Proveedor dado de alta hace 13 dias (estado 'nuevo') facturando PEN 9,950.00, por encima del umbral de S/ 5,000.00 para proveedores nuevos",
+        "fuente": "herramienta",
+        "confianza": 1.0,
+        "monto_impactado": 9950.0,
+        "bloquea_pago": false
+      },
+      {
+        "codigo": "FRA-UMB-007",
+        "titulo": "Monto apenas por debajo del umbral de aprobacion: posible fraccionamiento",
+        "severidad": "media",
+        "categoria": "duplicado_fraude",
+        "campo_afectado": "total",
+        "valor_declarado": "9,950.00",
+        "valor_esperado": "umbral 10,000.00",
+        "evidencia": "Total PEN 9,950.00 esta S/ 50.00 (0.50%) por debajo del umbral de aprobacion de S/ 10,000.00. Dentro del margen de 5.0% que indica posible fraccionamiento deliberado para evitar una firma",
+        "fuente": "herramienta",
+        "confianza": 1.0,
+        "monto_impactado": 9950.0,
+        "bloquea_pago": false
+      }
+    ],
+    "codigos_bloqueantes": [
+      "FRA-CTA-004"
+    ],
+    "resumen_ejecutivo": "Alto riesgo de fraude confirmado por triangulación: proveedor nuevo (13 días) emite factura por S/ 9,950 rozando el límite de aprobación (S/ 10,000) y consigna cuenta no registrada para desvío de fondos. Pago bloqueado preventivamente; requiere escalamiento inmediato a auditoría y validación con tesorería.",
+    "monto_en_riesgo": 9950.0,
+    "puntaje_determinista": 95,
+    "desacuerdo_con_determinista": false,
+    "confianza": 1.0
+  },
+  "plan_accion": {
+    "id_factura": "20600123450-F005-00017",
+    "iteracion": 1,
+    "acciones": [
+      {
+        "id_accion": "ACC-001",
+        "codigo_hallazgo": "FRA-CTA-004",
+        "accion": "Verificar la cuenta bancaria comunicándose al teléfono de contacto registrado del proveedor en el maestro, no al remitente del comprobante, para validar la cuenta ****1234 de Banco de la Nación",
+        "tipo_accion": "verificar_cuenta_canal_alterno",
+        "responsable": "tesoreria",
+        "prioridad": 1,
+        "sla_horas": 4,
+        "justificacion": "La cuenta declarada difiere de la registrada en el maestro; se exige confirmación por canal alterno preestablecido para evitar desvío de fondos.",
+        "evidencia": "La cuenta de abono declarada (Banco de la Nacion, ****1234) no coincide con ninguna de las 1 cuenta(s) registradas del proveedor (la registrada es ****3444). Patron tipico de fraude de desvio de pago",
+        "impacto_si_no_se_actua": "Pérdida patrimonial directa e irreversible por PEN 9,950.00 transferidos a una cuenta no autorizada.",
+        "reversible": false,
+        "requiere_aprobacion_humana": true,
+        "bloquea_pago": true,
+        "monto_involucrado": 9950.0
+      },
+      {
+        "id_accion": "ACC-002",
+        "codigo_hallazgo": "FRA-CTA-004",
+        "accion": "Escalar a Cumplimiento el expediente de Soluciones Tech Peru SAC por presunto intento de fraude de desvío de pago por PEN 9,950.00",
+        "tipo_accion": "escalar_cumplimiento",
+        "responsable": "cumplimiento",
+        "prioridad": 1,
+        "sla_horas": 4,
+        "justificacion": "El cambio inconsulto de cuenta bancaria junto con proveedor nuevo y monto rozando umbral representa un incidente grave de seguridad financiera.",
+        "evidencia": "La cuenta de abono declarada (Banco de la Nacion, ****1234) no coincide con ninguna de las 1 cuenta(s) registradas del proveedor (la registrada es ****3444). Patron tipico de fraude de desvio de pago",
+        "impacto_si_no_se_actua": "Falta de mitigación corporativa ante posibles ataques de suplantación de identidad o fraude interno.",
+        "reversible": true,
+        "requiere_aprobacion_humana": true,
+        "bloquea_pago": true,
+        "monto_involucrado": 9950.0
+      },
+      {
+        "id_accion": "ACC-003",
+        "codigo_hallazgo": "FRA-NUE-006",
+        "accion": "Derivar expediente a Compras para auditar proceso de debida diligencia y validación de entregables del proveedor dado de alta hace 13 días con factura por PEN 9,950.00",
+        "tipo_accion": "derivar_compras",
+        "responsable": "compras",
+        "prioridad": 2,
+        "sla_horas": 24,
+        "justificacion": "Supera el umbral preventivo de S/ 5,000.00 para proveedores nuevos sin historial operativo comprobado.",
+        "evidencia": "Proveedor dado de alta hace 13 dias (estado 'nuevo') facturando PEN 9,950.00, por encima del umbral de S/ 5,000.00 para proveedores nuevos",
+        "impacto_si_no_se_actua": "Riesgo de pago por servicios ficticios o contratación irregular con empresas sin capacidad operativa por PEN 9,950.00.",
+        "reversible": true,
+        "requiere_aprobacion_humana": true,
+        "bloquea_pago": false,
+        "monto_involucrado": 9950.0
+      },
+      {
+        "id_accion": "ACC-004",
+        "codigo_hallazgo": "FRA-UMB-007",
+        "accion": "Derivar a Compras para revisar contrataciones del mes con Soluciones Tech Peru SAC e identificar posible fraccionamiento deliberado por PEN 9,950.00",
+        "tipo_accion": "derivar_compras",
+        "responsable": "compras",
+        "prioridad": 3,
+        "sla_horas": 48,
+        "justificacion": "El monto está a solo S/ 50.00 del límite de autorización de S/ 10,000.00, sugiriendo elusión premeditada de firmas de aprobación gerencial.",
+        "evidencia": "Total PEN 9,950.00 esta S/ 50.00 (0.50%) por debajo del umbral de aprobacion de S/ 10,000.00. Dentro del margen de 5.0% que indica posible fraccionamiento deliberado para evitar una firma",
+        "impacto_si_no_se_actua": "Vulneración de las políticas de delegación de autoridad (DOA) y evasión de controles corporativos de aprobación.",
+        "reversible": true,
+        "requiere_aprobacion_humana": true,
+        "bloquea_pago": false,
+        "monto_involucrado": 9950.0
+      }
+    ],
+    "hallazgos_sin_accion": [],
+    "acciones_sin_hallazgo": [],
+    "resumen": "Se establecieron 4 acciones que abordan la totalidad de los hallazgos críticos de fraude. El desembolso queda bloqueado de inmediato mientras Tesorería valida la cuenta bancaria por canal telefónico oficial y Cumplimiento audita el posible desvío. Paralelamente, Compras auditará el alta del proveedor y descartará fraccionamiento de compras."
+  },
+  "veredicto_critico": {
+    "aprobado": true,
+    "puntaje_rubrica": 100,
+    "cobertura_hallazgos": 100,
+    "especificidad": 100,
+    "accionabilidad": 100,
+    "proporcionalidad": 100,
+    "observaciones": [],
+    "instrucciones_de_mejora": ""
+  },
+  "decision": {
+    "resultado": "retener",
+    "motivo": "Sospecha de fraude: FRA-CTA-004. La factura puede ser legitima y el beneficiario haber sido sustituido por un tercero. Verificar por canal independiente antes de cualquier pago, y revisar si hay un patron mas amplio.",
+    "condiciones": [
+      "Verificar la cuenta de abono llamando al contacto REGISTRADO del proveedor, no al que figura en el correo que trajo la factura",
+      "Obtener confirmacion escrita del cambio de cuenta, si fuera legitimo",
+      "Revisar otras facturas del mismo proveedor en los ultimos 90 dias"
+    ],
+    "monto_autorizado": 0.0,
+    "requiere_confirmacion_humana": true,
+    "regla_aplicada": "R-02",
+    "umbral_usado": 0.0,
+    "aprobador_sugerido": "cumplimiento"
+  },
+  "iteraciones_critico": 1,
+  "artefacto_memo": "memos/20600123450-F005-00017.md",
+  "llamadas_llm": 0,
+  "tokens_consumidos": 0
+}
